@@ -1,0 +1,22 @@
+{
+  "AuthToken": " abdfb1d3b4d...",
+  "DiscountCardID": "ffaa27c3-1f84-4a2b-9867-95f8d7fbc086",
+  "Data": {
+    "Arrival": "25112019",
+    "Departure": "29112019",
+    "Email": "test@test.test",
+    "PhoneNumber": "605 134 565",
+    "NewsletterAgreement": "true",
+    "Guests": [
+      {
+        "Name": "Karel Novák",
+        "IDCardNumber": "123456",
+        "IDCardType": "OBCANSKY_PRUKAZ",
+        "NoFeeReason": "ZTP",
+        "DateOfBirth": "20091980",
+        "Address": "Karlova 34, Karlovy Vary",
+        "State": "ČR"
+      }
+    ]
+  }
+}

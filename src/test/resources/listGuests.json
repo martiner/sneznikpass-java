@@ -1,0 +1,29 @@
+{
+  "Time": "20191204120640",
+  "Status": "OK",
+  "Items": [
+    {
+      "ID": "123427c3-1f84-4a2b-9867-95f8d7fbc086",
+      "DiscountCardID": "ffff27c3-1f84-4a2b-9867-95f8d7fbc086",
+      "DiscountCardNum": 37,
+      "Arrival": "25112019",
+      "CreatedWhen": "241120191327",
+      "Departure": "29112019",
+      "Email": "test@test.test",
+      "PhoneNumber": "605 134 565",
+      "NewsletterAgreement": "true",
+      "Status": "CONFIRMED",
+      "Guests": [
+        {
+          "Name": "Karel Novák",
+          "IDCardNumber": "123456",
+          "IDCardType": "OBCANSKY_PRUKAZ",
+          "NoFeeReason": "ZTP",
+          "DateOfBirth": "20091980",
+          "Address": "Karlova 34, Karlovy Vary",
+          "State": "ČR"
+        }
+      ]
+    }
+  ]
+}
