@@ -16,7 +16,7 @@ The artifact is published to Maven Central Repository
 ```xml
 <dependency>
 	<groupId>cz.geek</groupId>
-	<artifactId>sneznikpass-java</artifactId>
+	<artifactId>sneznikpass-client</artifactId>
 	<version>VERSION</version>
 </dependency>
 ```
