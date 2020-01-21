@@ -1,5 +1,7 @@
 package cz.geek.sneznikpass;
 
+import static java.util.Collections.singletonMap;
+import static org.springframework.http.HttpHeaders.USER_AGENT;
 import static org.springframework.http.HttpMethod.GET;
 import static org.springframework.http.HttpMethod.POST;
 
@@ -18,6 +20,8 @@ import lombok.NonNull;
 
 public class SneznikPassClient {
 
+	static final String CLIENT_USER_AGENT = "GeekSneznikPass/0.1.0 (+https://github.com/martiner/sneznikpass-java)";
+
 	static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
 
 	private final Endpoint endpoint;
@@ -27,6 +31,7 @@ public class SneznikPassClient {
 	public SneznikPassClient(@NonNull Endpoint endpoint) {
 		this.endpoint = endpoint;
 		this.restTemplate = new RestTemplate();
+		restTemplate.getInterceptors().add(new HeaderSettingInterceptor(singletonMap(USER_AGENT, CLIENT_USER_AGENT)));
 	}
 
 	public SneznikPassClient() {

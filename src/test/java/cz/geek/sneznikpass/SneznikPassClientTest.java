@@ -1,9 +1,11 @@
 package cz.geek.sneznikpass;
 
 import static cz.geek.sneznikpass.Endpoint.customEndpoint;
+import static cz.geek.sneznikpass.SneznikPassClient.CLIENT_USER_AGENT;
 import static cz.geek.sneznikpass.TestUtils.readString;
 import static net.jadler.Jadler.onRequest;
 import static net.jadler.Jadler.port;
+import static net.jadler.Jadler.verifyThatRequest;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
@@ -126,4 +128,16 @@ public class SneznikPassClientTest {
 		ListGuests listGuests = client.listGuests(authentication);
 		assertThat(listGuests.getItems(), hasSize(1));
 	}
+
+	@Test
+	public void shouldSendUserAgent() throws Exception {
+		onRequest()
+				.respond()
+				.withStatus(200)
+				.withBody(readString("/response.json"));
+
+		client.ping();
+		verifyThatRequest().havingHeaderEqualTo("User-Agent", CLIENT_USER_AGENT);
+	}
+
 }
