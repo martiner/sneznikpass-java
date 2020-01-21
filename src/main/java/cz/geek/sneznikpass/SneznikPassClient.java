@@ -59,10 +59,10 @@ public class SneznikPassClient {
 		exchange(POST, "updateStay", Response.class, request);
 	}
 
-	public ListGuests listGuests(@NonNull Authentication authentication)
+	public ListStays listStays(@NonNull Authentication authentication)
 			throws SneznikPassClientException {
-		ListGuestsRequest request = new ListGuestsRequest(authentication.getToken(), authentication.getOrganizationId());
-		return exchange(POST, "listGuests", ListGuests.class, request);
+		ListStaysRequest request = new ListStaysRequest(authentication.getToken(), authentication.getOrganizationId());
+		return exchange(POST, "listStays", ListStays.class, request);
 	}
 
 	private <T extends Response> T exchange(HttpMethod method, String uri, Class<T> responseType, Object requestBody) {

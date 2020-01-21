@@ -7,7 +7,7 @@ import lombok.EqualsAndHashCode;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class ListGuests extends Response {
+public class ListStays extends Response {
 
     @JsonProperty("Items")
     private List<Stay> items;

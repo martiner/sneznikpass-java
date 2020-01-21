@@ -8,12 +8,12 @@ import lombok.NonNull;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
-class ListGuestsRequest extends Request {
+class ListStaysRequest extends Request {
 
 	@JsonProperty("OrgID")
 	private final String orgId;
 
-	public ListGuestsRequest(@NonNull String authToken, @NonNull String orgId) {
+	public ListStaysRequest(@NonNull String authToken, @NonNull String orgId) {
 		super(authToken);
 		this.orgId = orgId;
 	}

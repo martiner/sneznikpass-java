@@ -117,16 +117,16 @@ public class SneznikPassClientTest {
 	}
 
 	@Test
-	public void shouldListGuests() throws Exception {
+	public void shouldListStays() throws Exception {
 		onRequest()
 				.havingMethodEqualTo("POST")
-				.havingPathEqualTo("/listGuests")
+				.havingPathEqualTo("/listStays")
 			.respond()
 				.withStatus(200)
-				.withBody(readString("/listGuests.json"));
+				.withBody(readString("/listStays.json"));
 
-		ListGuests listGuests = client.listGuests(authentication);
-		assertThat(listGuests.getItems(), hasSize(1));
+		ListStays listStays = client.listStays(authentication);
+		assertThat(listStays.getItems(), hasSize(1));
 	}
 
 	@Test

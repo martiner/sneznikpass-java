@@ -7,13 +7,11 @@ import static org.hamcrest.Matchers.*;
 
 import org.junit.Test;
 
-import com.jayway.jsonpath.matchers.JsonPathMatchers;
-
-public class ListGuestsRequestTest {
+public class ListStaysRequestTest {
 
 	@Test
 	public void shouldSerialize() throws Exception {
-		ListGuestsRequest request = new ListGuestsRequest("token", "org123");
+		ListStaysRequest request = new ListStaysRequest("token", "org123");
 		String json = writeString(request);
 		assertThat(json, hasJsonPath("AuthToken", equalTo("token")));
 		assertThat(json, hasJsonPath("OrgID", equalTo("org123")));
