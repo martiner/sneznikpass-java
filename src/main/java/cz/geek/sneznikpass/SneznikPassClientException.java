@@ -6,6 +6,10 @@ public class SneznikPassClientException extends RuntimeException {
 		super(cause);
 	}
 
+	public SneznikPassClientException(String message, Throwable cause) {
+		super(message, cause);
+	}
+
 	public SneznikPassClientException(String message) {
 		super(message);
 	}

@@ -20,17 +20,17 @@ public class SneznikPassClient {
 
 	static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
 
-	private final String endpoint;
+	private final Endpoint endpoint;
 
 	private RestTemplate restTemplate;
 
-	SneznikPassClient(@NonNull String endpoint) {
+	public SneznikPassClient(@NonNull Endpoint endpoint) {
 		this.endpoint = endpoint;
 		this.restTemplate = new RestTemplate();
 	}
 
 	public SneznikPassClient() {
-		this("https://cma.odp.cz/");
+		this(Endpoints.PRODUCTION);
 	}
 
 	public Response ping() throws SneznikPassClientException {
@@ -74,7 +74,7 @@ public class SneznikPassClient {
 		try {
 			response = restTemplate.exchange(url, method, requestEntity, responseType);
 		} catch (RestClientException e) {
-			throw new SneznikPassClientException(e);
+			throw new SneznikPassClientException(url, e);
 		}
 		return response;
 	}
@@ -97,8 +97,8 @@ public class SneznikPassClient {
 	}
 
 	private String createUrl(String uri) {
-		return UriComponentsBuilder.fromHttpUrl(endpoint)
-				.pathSegment("dolnimorava", uri)
+		return UriComponentsBuilder.fromUri(endpoint.getUri())
+				.pathSegment(uri)
 				.toUriString();
 	}
 }

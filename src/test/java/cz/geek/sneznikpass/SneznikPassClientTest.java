@@ -1,5 +1,6 @@
 package cz.geek.sneznikpass;
 
+import static cz.geek.sneznikpass.Endpoint.customEndpoint;
 import static cz.geek.sneznikpass.TestUtils.readString;
 import static net.jadler.Jadler.onRequest;
 import static net.jadler.Jadler.port;
@@ -32,7 +33,7 @@ public class SneznikPassClientTest {
 
 	@Before
 	public void setUp() throws Exception {
-		client = new SneznikPassClient("http://localhost:" + port());
+		client = new SneznikPassClient(customEndpoint("http", "localhost", port()));
 		authentication = new Authentication("token", "org123");
 	}
 
@@ -40,7 +41,7 @@ public class SneznikPassClientTest {
 	public void shouldReturnPing() throws Exception {
 		onRequest()
 				.havingMethodEqualTo("GET")
-				.havingPathEqualTo("/dolnimorava/ping")
+				.havingPathEqualTo("/ping")
 			.respond()
 				.withStatus(200)
 				.withBody(readString("/response.json"));
@@ -56,7 +57,7 @@ public class SneznikPassClientTest {
 
 		onRequest()
 				.havingMethodEqualTo("GET")
-				.havingPathEqualTo("/dolnimorava/ping")
+				.havingPathEqualTo("/ping")
 			.respond()
 				.withStatus(200)
 				.withBody(readString("/fail.json"));
@@ -79,7 +80,7 @@ public class SneznikPassClientTest {
 	public void shouldAuthenticate() throws Exception {
 		onRequest()
 				.havingMethodEqualTo("POST")
-				.havingPathEqualTo("/dolnimorava/authenticateUser")
+				.havingPathEqualTo("/authenticateUser")
 			.respond()
 				.withStatus(200)
 				.withBody(readString("/authentication.json"));
@@ -92,7 +93,7 @@ public class SneznikPassClientTest {
 	public void shouldNewStay() throws Exception {
 		onRequest()
 				.havingMethodEqualTo("POST")
-				.havingPathEqualTo("/dolnimorava/newStay")
+				.havingPathEqualTo("/newStay")
 			.respond()
 				.withStatus(200)
 				.withBody(readString("/createdStay.json"));
@@ -105,7 +106,7 @@ public class SneznikPassClientTest {
 	public void shouldUpdateStay() throws Exception {
 		onRequest()
 				.havingMethodEqualTo("POST")
-				.havingPathEqualTo("/dolnimorava/updateStay")
+				.havingPathEqualTo("/updateStay")
 			.respond()
 				.withStatus(200)
 				.withBody(readString("/response.json"));
@@ -117,7 +118,7 @@ public class SneznikPassClientTest {
 	public void shouldListGuests() throws Exception {
 		onRequest()
 				.havingMethodEqualTo("POST")
-				.havingPathEqualTo("/dolnimorava/listGuests")
+				.havingPathEqualTo("/listGuests")
 			.respond()
 				.withStatus(200)
 				.withBody(readString("/listGuests.json"));
