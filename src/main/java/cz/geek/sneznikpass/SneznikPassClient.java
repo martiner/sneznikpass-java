@@ -10,7 +10,10 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.client.BufferingClientHttpRequestFactory;
+import org.springframework.http.client.SimpleClientHttpRequestFactory;
 import org.springframework.web.client.RestClientException;
+import org.springframework.web.client.RestClientResponseException;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -32,6 +35,8 @@ public class SneznikPassClient {
 		this.endpoint = endpoint;
 		this.restTemplate = new RestTemplate();
 		restTemplate.getInterceptors().add(new HeaderSettingInterceptor(singletonMap(USER_AGENT, CLIENT_USER_AGENT)));
+		restTemplate.getInterceptors().add(new LoggingInterceptor());
+		restTemplate.setRequestFactory(new BufferingClientHttpRequestFactory(new SimpleClientHttpRequestFactory()));
 	}
 
 	public SneznikPassClient() {
@@ -78,6 +83,9 @@ public class SneznikPassClient {
 		ResponseEntity<T> response;
 		try {
 			response = restTemplate.exchange(url, method, requestEntity, responseType);
+		} catch (RestClientResponseException e) {
+			String msg = String.join(" ", url, Integer.toString(e.getRawStatusCode()), e.getResponseBodyAsString());
+			throw new SneznikPassClientException(msg, e);
 		} catch (RestClientException e) {
 			throw new SneznikPassClientException(url, e);
 		}
