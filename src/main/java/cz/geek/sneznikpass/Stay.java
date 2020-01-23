@@ -52,6 +52,18 @@ public class Stay {
     @JsonProperty("NewsletterAgreement")
     private boolean newsletterAgreement;
 
+    @JsonProperty("AnonymousPayingGuestsCount")
+    private int anonymousPayingGuestsCount;
+
+    @JsonProperty("AnonymousNotPayingGuestsCount")
+    private int anonymousNotPayingGuestsCount;
+
+    @JsonProperty("EvidType")
+    private EvidType evidType;
+
+    @JsonProperty("TotalFee")
+    private Integer totalFee;
+
     @JsonProperty("Guests")
     private List<Guest> guests = new ArrayList<>();
 

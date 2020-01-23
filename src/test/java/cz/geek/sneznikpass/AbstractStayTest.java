@@ -41,16 +41,17 @@ public class AbstractStayTest {
 		assertThat(json, hasJsonPath("Data.Departure", equalTo("21012020")));
 		assertThat(json, hasJsonPath("Data.Email", equalTo("em@i.l")));
 		assertThat(json, hasJsonPath("Data.PhoneNumber", equalTo("+123 456")));
-		assertThat(json, hasJsonPath("Data.Status", equalTo("CONFIRMED")));
+		assertThat(json, hasJsonPath("Data.Status", equalTo(0)));
 		assertThat(json, hasJsonPath("Data.NewsletterAgreement", equalTo(true)));
 
 		assertThat(json, hasJsonPath("Data.Guests", hasSize(1)));
 		assertThat(json, hasJsonPath("Data.Guests[0].Name", equalTo("Karel Novák")));
 		assertThat(json, hasJsonPath("Data.Guests[0].IDCardNumber", equalTo("123456")));
-		assertThat(json, hasJsonPath("Data.Guests[0].IDCardType", equalTo("OBCANSKY_PRUKAZ")));
-		assertThat(json, hasJsonPath("Data.Guests[0].NoFeeReason", equalTo("ZTP")));
+		assertThat(json, hasJsonPath("Data.Guests[0].IDCardType", equalTo(0)));
+		assertThat(json, hasJsonPath("Data.Guests[0].NoFeeReason", equalTo(0)));
 		assertThat(json, hasJsonPath("Data.Guests[0].DateOfBirth", equalTo("20091980")));
 		assertThat(json, hasJsonPath("Data.Guests[0].Address", equalTo("Karlova 34, Karlovy Vary")));
 		assertThat(json, hasJsonPath("Data.Guests[0].State", equalTo("ČR")));
+		assertThat(json, hasJsonPath("Data.Guests[0].IsMainGuest", equalTo(false)));
 	}
 }

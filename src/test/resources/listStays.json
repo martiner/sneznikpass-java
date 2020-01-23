@@ -1,4 +1,5 @@
 {
+  "foo": "bar",
   "Time": "20191204120640",
   "Status": "OK",
   "Items": [
@@ -11,17 +12,22 @@
       "Departure": "29112019",
       "Email": "test@test.test",
       "PhoneNumber": "605 134 565",
-      "NewsletterAgreement": "true",
-      "Status": "CONFIRMED",
+      "NewsletterAgreement": true,
+      "Status": 0,
+      "TotalFee": 2000,
+      "AnonymousNotPayingGuestsCount": 0,
+      "AnonymousPayingGuestsCount": 0,
+      "EvidType": 1,
       "Guests": [
         {
           "Name": "Karel Novák",
           "IDCardNumber": "123456",
-          "IDCardType": "OBCANSKY_PRUKAZ",
-          "NoFeeReason": "ZTP",
+          "IDCardType": 0,
+          "NoFeeReason": 0,
           "DateOfBirth": "20091980",
           "Address": "Karlova 34, Karlovy Vary",
-          "State": "ČR"
+          "State": "ČR",
+          "IsMainGuest": true
         }
       ]
     }

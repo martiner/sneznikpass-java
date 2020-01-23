@@ -1,11 +1,13 @@
 package cz.geek.sneznikpass;
 
+import static cz.geek.sneznikpass.EvidType.ELECTRONIC;
 import static cz.geek.sneznikpass.IdCardType.OBCANSKY_PRUKAZ;
 import static cz.geek.sneznikpass.NoFeeReason.ZTP;
 import static cz.geek.sneznikpass.Status.CONFIRMED;
 import static cz.geek.sneznikpass.TestUtils.readJson;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.*;
+import static org.hamcrest.Matchers.hasSize;
+import static org.hamcrest.Matchers.is;
 
 import org.junit.Test;
 
@@ -27,6 +29,10 @@ public class ListStaysTest {
 		assertThat(item.getPhoneNumber(), is("605 134 565"));
 		assertThat(item.isNewsletterAgreement(), is(true));
 		assertThat(item.getStatus(), is(CONFIRMED));
+		assertThat(item.getAnonymousNotPayingGuestsCount(), is(0));
+		assertThat(item.getAnonymousPayingGuestsCount(), is(0));
+		assertThat(item.getEvidType(), is(ELECTRONIC));
+		assertThat(item.getTotalFee(), is(2000));
 
 		assertThat(item.getGuests(), hasSize(1));
 		Guest guest = item.getGuests().get(0);
@@ -37,5 +43,6 @@ public class ListStaysTest {
 		assertThat(guest.getDateOfBirth(), is("20091980"));
 		assertThat(guest.getAddress(), is("Karlova 34, Karlovy Vary"));
 		assertThat(guest.getState(), is("ČR"));
+		assertThat(guest.isMainGuest(), is(true));
 	}
 }

@@ -36,6 +36,9 @@ public class Guest {
     @JsonProperty("NoFeeReason")
     private NoFeeReason noFeeReason;
 
+    @JsonProperty("IsMainGuest")
+    private boolean mainGuest;
+
     public void setDateOfBirth(String dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }

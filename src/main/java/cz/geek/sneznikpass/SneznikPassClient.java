@@ -1,5 +1,6 @@
 package cz.geek.sneznikpass;
 
+import static java.util.Collections.singletonList;
 import static java.util.Collections.singletonMap;
 import static org.springframework.http.HttpHeaders.USER_AGENT;
 import static org.springframework.http.HttpMethod.GET;
@@ -12,12 +13,15 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.client.BufferingClientHttpRequestFactory;
 import org.springframework.http.client.SimpleClientHttpRequestFactory;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestClientResponseException;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 
 import lombok.NonNull;
 
@@ -25,7 +29,9 @@ public class SneznikPassClient {
 
 	static final String CLIENT_USER_AGENT = "GeekSneznikPass/0.1.0 (+https://github.com/martiner/sneznikpass-java)";
 
-	static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
+	static final ObjectMapper OBJECT_MAPPER = new ObjectMapper()
+			.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES)
+			.enable(SerializationFeature.WRITE_ENUMS_USING_INDEX);
 
 	private final Endpoint endpoint;
 
@@ -37,6 +43,7 @@ public class SneznikPassClient {
 		restTemplate.getInterceptors().add(new HeaderSettingInterceptor(singletonMap(USER_AGENT, CLIENT_USER_AGENT)));
 		restTemplate.getInterceptors().add(new LoggingInterceptor());
 		restTemplate.setRequestFactory(new BufferingClientHttpRequestFactory(new SimpleClientHttpRequestFactory()));
+		restTemplate.setMessageConverters(singletonList(new MappingJackson2HttpMessageConverter(OBJECT_MAPPER)));
 	}
 
 	public SneznikPassClient() {
