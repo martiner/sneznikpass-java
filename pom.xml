@@ -4,7 +4,7 @@
 
 	<groupId>cz.geek</groupId>
 	<artifactId>sneznikpass-client</artifactId>
-	<version>0.1.0</version>
+	<version>0.1.1-SNAPSHOT</version>
 	<name>${project.artifactId}</name>
 	<description>SneznikPass Java client</description>
 	<url>http://github.com/martiner/sneznikpass-java</url>
