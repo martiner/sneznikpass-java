@@ -17,7 +17,7 @@ The artifact is published to Maven Central Repository
 <dependency>
 	<groupId>cz.geek</groupId>
 	<artifactId>sneznikpass-client</artifactId>
-	<version>VERSION</version>
+	<version>RELEASE</version>
 </dependency>
 ```
 
@@ -58,7 +58,7 @@ client.updateStay(authentication, "stayid", stay);
 
 ### List all stays
 ```java
-ListGuests listGuests = client.listGuests(authentication);
+ListStays list = client.listStays(authentication);
 ```
 
 ### Ping REST service
